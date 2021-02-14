@@ -1,4 +1,6 @@
 import axios from 'axios';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 export const authenticateAction = (username, password) => (dispatch) => {
   dispatch({ type: 'AUTHENTICATE_REQUEST' });
@@ -11,8 +13,8 @@ export const authenticateAction = (username, password) => (dispatch) => {
     .then((payload) => {
       dispatch({ type: 'AUTHENTICATE_SUCCESS', payload });
     })
-    .catch(() => {
-      dispatch({ type: 'AUTHENTICATE_FAILURE' });
+    .catch((err) => {
+      dispatch({ type: 'AUTHENTICATE_FAILURE', err });
     });
 };
 export const registerAction = (username, password) => (dispatch) => {
@@ -30,3 +32,7 @@ export const registerAction = (username, password) => (dispatch) => {
       dispatch({ type: 'AUTHENTICATE_FAILURE' });
     });
 };
+export const LogoutAction =()=> (dispatch) =>{
+  dispatch({type: 'LOGOUT'});
+  return <Redirect to='/' />;
+}

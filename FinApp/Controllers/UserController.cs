@@ -2,6 +2,7 @@
 using FinApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace FinApp.Controllers
             var user = _userService.Find(users.Username, users.Password);
             if (user.Username == users.Username && user.Password == users.Password)
             {
+                
                 return user;
 
             }

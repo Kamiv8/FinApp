@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { LogoutAction } from '../actions/actions';
+
 import image from '../assets/image/3135715.png';
 
 import Nav from './Nav';
@@ -10,6 +12,7 @@ const StyledWrapper = styled.div`
   width: 80%;
   height: 100vh;
   position: absolute;
+ // display: none;                   // wyłącznie jak narazie 
   top: 0;
   right: 0;
   padding: 0 20px;
@@ -42,16 +45,17 @@ const StyledBookmarksPanel = styled.nav`
   position: relative;
   top: 200px;
 `;
-const Navigation = ({ username }) => {
+const Navigation = ({ username,logout }) => {
   return (
     <>
-      <StyledWrapper>
+      <StyledWrapper >
         <StyledUserPanel>
           <StyledProfileIcon />
           <StyledUserName to="/">{username}</StyledUserName>
         </StyledUserPanel>
         <StyledBookmarksPanel>
           <Nav />
+          <Link to='/' onClick={logout}>dsadsa</Link>
         </StyledBookmarksPanel>
       </StyledWrapper>
     </>
@@ -60,4 +64,7 @@ const Navigation = ({ username }) => {
 const mapStateToProps = ({ username }) => {
   return { username };
 };
-export default connect(mapStateToProps)(Navigation);
+const mapDispatchToProps = (dispatch) =>({
+  logout: () => { dispatch(LogoutAction()); }
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Navigation);
