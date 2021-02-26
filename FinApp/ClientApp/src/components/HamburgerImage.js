@@ -28,13 +28,18 @@ const StyledLine = styled.li`
     `}
 `;
 
-const HamburgerIcon = () => {
+// onClick={() => setOpen(!open)
+
+
+const HamburgerIcon = (open,setOpen) => {
+
   return (
-    <StyledWrapper>
-      <StyledLine first />
-      <StyledLine second />
-      <StyledLine third />
-    </StyledWrapper>
+
+      <StyledWrapper >  
+        <StyledLine first />
+        <StyledLine second />
+        <StyledLine third />
+      </StyledWrapper>
   );
 };
 

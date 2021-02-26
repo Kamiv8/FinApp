@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { LogoutAction } from '../actions/actions';
 
 import image from '../assets/image/3135715.png';
+import {ReactComponent as LogoutImage} from '../assets/image/logout2.svg';
 
 import Nav from './Nav';
 
@@ -12,12 +13,13 @@ const StyledWrapper = styled.div`
   width: 80%;
   height: 100vh;
   position: absolute;
- // display: none;                   // wyłącznie jak narazie 
   top: 0;
   right: 0;
   padding: 0 20px;
   background-color: ${({ theme }) => theme.purple};
   box-shadow: -10px 3px 20px rgba(0, 0, 0, 0.16);
+  transition: transform 0.3s ease-in-out;
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
 `;
 const StyledUserPanel = styled.div`
   display: flex;
@@ -43,20 +45,30 @@ const StyledUserName = styled(Link)`
 `;
 const StyledBookmarksPanel = styled.nav`
   position: relative;
-  top: 200px;
+ top: 200px;
+
 `;
-const Navigation = ({ username,logout }) => {
+const StyledLogout = styled(Link)`
+display: grid;
+justify-content: end; // do poprawy ten top 200
+position: relative;
+top: 390px;
+
+`;
+const Navigation = ({ username,logout,open }) => {
   return (
     <>
-      <StyledWrapper >
+      <StyledWrapper open={open}>
         <StyledUserPanel>
           <StyledProfileIcon />
           <StyledUserName to="/">{username}</StyledUserName>
         </StyledUserPanel>
         <StyledBookmarksPanel>
           <Nav />
-          <Link to='/' onClick={logout}>dsadsa</Link>
         </StyledBookmarksPanel>
+          <StyledLogout to='/' onClick={logout}>
+            <LogoutImage />
+          </StyledLogout>
       </StyledWrapper>
     </>
   );

@@ -1,44 +1,80 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import {ReactComponent as Home} from  '../assets/image/home2.svg';
+import {ReactComponent as History} from  '../assets/image/wallet2.svg';
+import {ReactComponent as Group} from  '../assets/image/group2.svg';
+import {ReactComponent as Settings} from  '../assets/image/settings2.svg';
+
+
+
 
 const bookmarks = [
   {
     name: 'Home',
     route: '/home',
+    image: <Home />
   },
   {
     name: 'History',
     route: '/history',
+    image: <History />
   },
-  {
+  {                                 // dodać to do MainTeme i tu tylko odwołanie 
     name: 'Group',
     route: '/group',
+    image: <Group />
   },
   {
     name: 'Setings',
     route: 'settings',
+    image: <Settings />
   },
 ];
 
 const StyledNavLink = styled(NavLink)`
-  background-color: blue;
+  margin-top: 40px;
+  display: flex;
+padding-left: 10px;
+padding-top: 2px;
+  flex-direction: row;
+  width: 50%;
   &.active {
-    background-color: red;
+    border-radius: 20px;
+    background-color: ${({theme})=> theme.grayLight};
   }
+`;
+const StyledNavLinks = styled.ul`
+
+position: relative;
+display: grid;
+grid-auto-flow: row;
+
+`;
+
+const StyledLinkName = styled.p`
+  margin-left: 25px;
+  padding-top: 7px;
+  font-size: ${({theme}) => theme.fontSize.s};
+  color: ${({theme})=> theme.white};
+  font-weight: ${({theme}) => theme.bold};
 `;
 
 const Nav = () => (
+  
   <>
-    <ul>
-      {bookmarks.map(({ name, route }) => {
+    <StyledNavLinks>
+      {bookmarks.map(({ name, route,image }) => {
         return (
+          <>
           <StyledNavLink key={name} to={route} activeClassName="active">
-            {name}
+          {image}
+          <StyledLinkName> {name}</StyledLinkName>
           </StyledNavLink>
+          </>
         );
       })}
-    </ul>
+    </StyledNavLinks>
   </>
 );
 

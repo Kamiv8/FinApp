@@ -1,12 +1,7 @@
 ﻿using FinApp.Models;
 using FinApp.Services;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FinApp.Controllers
 {
@@ -36,12 +31,12 @@ namespace FinApp.Controllers
             return user;
         }
         [HttpPost]
-        public ActionResult<User> FindUser([FromBody]User users)
+        public ActionResult<User> FindUser([FromBody] User users)
         {
             var user = _userService.Find(users.Username, users.Password);
             if (user.Username == users.Username && user.Password == users.Password)
             {
-                
+
                 return user;
 
             }
@@ -50,13 +45,16 @@ namespace FinApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult<User> Create([FromBody]User user)
+        public ActionResult<User> Create([FromBody] User user)
         {
 
             _userService.Create(user);
 
             return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
         }
+        public void Logout()
+        {
 
+        }
     }
 }

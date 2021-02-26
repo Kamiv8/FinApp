@@ -1,10 +1,7 @@
 ﻿using FinApp.Models;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace FinApp.Services
 {
@@ -19,8 +16,8 @@ namespace FinApp.Services
         }
         public List<User> Get() => _User.Find(user => true).ToList();
         public User Get(string id) => _User.Find<User>(user => user.Id == id).FirstOrDefault();
-        
-        public User Find(string username, string password)
+
+        public User Find(string username, string password) // do logowania
         {
             User user = _User.Find<User>(user => (user.Username == username && user.Password == password)).FirstOrDefault();
             if (user != null)
@@ -45,6 +42,10 @@ namespace FinApp.Services
             }
             return null;
         }
+        //public void Logout()
+        //{ 
+        //   User user = _User.Find<User>(us => user.)
+        //}
 
     }
 }

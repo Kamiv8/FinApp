@@ -2,9 +2,12 @@ export const theme = {
   // color
   white: 'rgba(255,255,255,1)',
   purple: 'rgba(141,129,219,1)',
+
+
   green: 'rgba(101,222,72,0.7)',
   red: 'rgba(241,59,59,0.7)',
   gray: 'rgba(244,244,244,1)',
+  grayLight: 'rgba(244,244,244,0.46)',
   light: 300,
   bold: 600,
   // fonts

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 
 import Logo from '../components/LogoImage';
@@ -21,18 +21,25 @@ const StyledHeader = styled.header`
 const StyledMainContent = styled.div``;
 
 const HomeTemplate = ({ children }) => {
+ const [open, setOpen] = useState(false);
+
+
   return (
     <>
       <StyledWrapper>
-        <Navigation />
+        <Navigation open={open} setOpen={setOpen} />
         <StyledHeader>
           <Logo />
-          <HamburgerIcon />
+          <div onClick={() => setOpen(!open)}>  
+            <HamburgerIcon open={open} />
+          </div>
         </StyledHeader>
         <StyledMainContent>{children}</StyledMainContent>
+
       </StyledWrapper>
     </>
   );
 };
+// do poprawy przekazywanie funkcji open
 
 export default HomeTemplate;

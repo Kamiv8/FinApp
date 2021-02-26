@@ -16,6 +16,8 @@ export const authenticateAction = (username, password) => (dispatch) => {
     .catch((err) => {
       dispatch({ type: 'AUTHENTICATE_FAILURE', err });
     });
+
+
 };
 export const registerAction = (username, password) => (dispatch) => {
   dispatch({ type: 'AUTHENTICATE_REQUEST' });
@@ -34,5 +36,13 @@ export const registerAction = (username, password) => (dispatch) => {
 };
 export const LogoutAction =()=> (dispatch) =>{
   dispatch({type: 'LOGOUT'});
+  const url = 'User/Logout';
+  axios
+    .post(url,
+      {
+
+      }
+
+    )
   return <Redirect to='/' />;
 }

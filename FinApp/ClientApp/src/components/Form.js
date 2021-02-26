@@ -39,7 +39,7 @@ const StyledForm = styled(Forms)`
 `;
 
 
-const Form = ({ registerForm, authenticate, register, isLoggedIn }) => {
+const Form = ({ registerForm, authenticate, register, isLoggedIn, userId }) => {
   return (
     <>
       <StyledWrapper>
@@ -107,7 +107,7 @@ const Form = ({ registerForm, authenticate, register, isLoggedIn }) => {
               {({ handleChange, values, handleBlur,}) => {
                 console.log(isLoggedIn);
                 if (isLoggedIn) {
-                console.log("why not :(");
+                console.log(userId);
 
                   return <Redirect to="/home" />;
                 }
@@ -156,8 +156,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 });
 
-const mapStateToProps = ({ isLoggedIn }) => ({
+const mapStateToProps = ({ isLoggedIn,userId }) => ({
   isLoggedIn,  
+  userId
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
