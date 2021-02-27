@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 const StyledWrapper = styled.ul`
   position: relative;
-  bottom: 15px;
+//  bottom: 15px;
 `;
 
 const StyledLine = styled.li`
@@ -13,6 +13,7 @@ const StyledLine = styled.li`
   border-radius: 20px;
   background-color: white;
   position: absolute;
+  z-index: 2;
   right: 0;
   ${({ second }) =>
     second &&

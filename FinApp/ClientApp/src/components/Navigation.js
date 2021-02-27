@@ -13,9 +13,10 @@ const StyledWrapper = styled.div`
   width: 80%;
   height: 100vh;
   position: absolute;
+  display: grid;
   top: 0;
   right: 0;
-  padding: 0 20px;
+  padding: 6% 6%;
   background-color: ${({ theme }) => theme.purple};
   box-shadow: -10px 3px 20px rgba(0, 0, 0, 0.16);
   transition: transform 0.3s ease-in-out;
@@ -24,12 +25,11 @@ const StyledWrapper = styled.div`
 const StyledUserPanel = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: top;
   position: relative;
-  top: 40px;
 `;
 const StyledProfileIcon = styled.div`
-  width: 37px;
+  width:  37px;
   height: 37px;
   border: 1px solid ${({ theme }) => theme.gray};
   border-radius: 50%;
@@ -45,15 +45,17 @@ const StyledUserName = styled(Link)`
 `;
 const StyledBookmarksPanel = styled.nav`
   position: relative;
- top: 200px;
+  top: 15%;
 
 `;
 const StyledLogout = styled(Link)`
-display: grid;
-justify-content: end; // do poprawy ten top 200
-position: relative;
-top: 390px;
 
+`;
+const StyledLogoutWrapper = styled.div`
+  position: relative;
+  display: grid;
+  align-items: end;
+  justify-content: end;
 `;
 const Navigation = ({ username,logout,open }) => {
   return (
@@ -66,9 +68,12 @@ const Navigation = ({ username,logout,open }) => {
         <StyledBookmarksPanel>
           <Nav />
         </StyledBookmarksPanel>
+          <StyledLogoutWrapper>
           <StyledLogout to='/' onClick={logout}>
             <LogoutImage />
           </StyledLogout>
+
+          </StyledLogoutWrapper>
       </StyledWrapper>
     </>
   );

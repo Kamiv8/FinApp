@@ -6,18 +6,23 @@ import HamburgerIcon from '../components/HamburgerImage';
 import Navigation from '../components/Navigation';
 
 const StyledWrapper = styled.div`
-  padding: 30px 20px;
+  padding: 0 5.4%;
   width: 100vw;
   height: 100vh;
+  background-color: ${({theme}) => theme.purple};
 `;
 
 const StyledHeader = styled.header`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding-top: 6%;
 `;
 
+
+const StyledHamburgerWrapper = styled.div`
+  
+`;
 const StyledMainContent = styled.div``;
 
 const HomeTemplate = ({ children }) => {
@@ -27,15 +32,14 @@ const HomeTemplate = ({ children }) => {
   return (
     <>
       <StyledWrapper>
-        <Navigation open={open} setOpen={setOpen} />
         <StyledHeader>
           <Logo />
-          <div onClick={() => setOpen(!open)}>  
+          <StyledHamburgerWrapper onClick={() => setOpen(!open)}>
             <HamburgerIcon open={open} />
-          </div>
+          </StyledHamburgerWrapper>
         </StyledHeader>
+        <Navigation open={open} setOpen={setOpen} />
         <StyledMainContent>{children}</StyledMainContent>
-
       </StyledWrapper>
     </>
   );

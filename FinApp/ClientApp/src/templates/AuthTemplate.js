@@ -12,6 +12,7 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  background-color: ${({theme}) => theme.purple};
 `;
 
 const StyledContent = styled.div`

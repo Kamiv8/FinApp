@@ -26,7 +26,7 @@ const bookmarks = [
     image: <Group />
   },
   {
-    name: 'Setings',
+    name: 'Settings',
     route: 'settings',
     image: <Settings />
   },
@@ -35,8 +35,8 @@ const bookmarks = [
 const StyledNavLink = styled(NavLink)`
   margin-top: 40px;
   display: flex;
-padding-left: 10px;
-padding-top: 2px;
+  padding: 2px 10px 0 10px;
+//padding-top: 2px;
   flex-direction: row;
   width: 50%;
   &.active {
@@ -53,7 +53,7 @@ grid-auto-flow: row;
 `;
 
 const StyledLinkName = styled.p`
-  margin-left: 25px;
+  margin-left: 15px;
   padding-top: 7px;
   font-size: ${({theme}) => theme.fontSize.s};
   color: ${({theme})=> theme.white};
