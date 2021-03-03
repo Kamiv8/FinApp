@@ -12,11 +12,13 @@ const GlobalStyle = createGlobalStyle`
   }
   html {
     font-size: 62.5%;
+
   }
   body {
     font-size: 1.6rem;
     font-family: "Montserrat", sans-serif;
-    overflow-x: hidden;
+    overflow: hidden;
+
    // background-color: rgba(141,129,219,1);
   }
   ul,ol{

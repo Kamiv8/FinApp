@@ -6,6 +6,7 @@ const initialState = {
       userId: '',
       username: '',
       password: '',
+      allMoney: 0,
     },
   ],
 };
@@ -23,6 +24,7 @@ const rootReducer = (state = initialState, action) => {
       };
       case 'LOGOUT':
         return{
+          ...state,
           isLoggedIn: false,
           users: null,
         }

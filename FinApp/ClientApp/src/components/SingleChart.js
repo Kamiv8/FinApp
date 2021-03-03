@@ -5,7 +5,6 @@ import { theme } from '../theme/MainTheme';
 
 
 class SingleChart extends Component {
-  
   state = {
     chartData: {
       labels: [new Date().getDate(), 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -17,7 +16,7 @@ class SingleChart extends Component {
 
           ],
           borderColor: [
-            'rgba(255,255,255 1)',
+            theme.white,
 
           ],
           borderWidth: 2,

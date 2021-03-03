@@ -157,7 +157,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = ({ isLoggedIn,userId }) => ({
-  isLoggedIn,  
+  isLoggedIn,
   userId
 });
 

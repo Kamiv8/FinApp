@@ -1,9 +1,11 @@
+using FinApp.Data;
 using FinApp.Models;
 using FinApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,10 +33,13 @@ namespace FinApp
             {
                 configuration.RootPath = "ClientApp/build";
             });
-            services.Configure<FinancialstoreDatabaseSettings>(
-                Configuration.GetSection(nameof(FinancialstoreDatabaseSettings)));
-            services.AddSingleton<IFinancialstoreDatabaseSettings>(sp => sp.GetRequiredService<IOptions<FinancialstoreDatabaseSettings>>().Value);
-            services.AddSingleton<UserService>();
+            //services.Configure<FinancialstoreDatabaseSettings>(
+            //    Configuration.GetSection(nameof(FinancialstoreDatabaseSettings)));
+            //services.AddSingleton<IFinancialstoreDatabaseSettings>(sp => sp.GetRequiredService<IOptions<FinancialstoreDatabaseSettings>>().Value);
+            //services.AddSingleton<UserService>();
+            services.AddDbContext<FinancialContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

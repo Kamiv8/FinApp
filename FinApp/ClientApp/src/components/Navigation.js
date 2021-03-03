@@ -13,7 +13,7 @@ const StyledWrapper = styled.div`
   width: 80%;
   height: 100vh;
   position: absolute;
-  display: grid;
+  display: ${({open}) => open ? 'grid' : 'none'} ;
   top: 0;
   right: 0;
   padding: 6% 6%;
@@ -57,7 +57,7 @@ const StyledLogoutWrapper = styled.div`
   align-items: end;
   justify-content: end;
 `;
-const Navigation = ({ username,logout,open }) => {
+const Navigation = ({ username,logout,open ,userId}) => {
   return (
     <>
       <StyledWrapper open={open}>
@@ -69,19 +69,18 @@ const Navigation = ({ username,logout,open }) => {
           <Nav />
         </StyledBookmarksPanel>
           <StyledLogoutWrapper>
-          <StyledLogout to='/' onClick={logout}>
+          <StyledLogout to='/' onClick={()=>logout(userId)}>
             <LogoutImage />
           </StyledLogout>
-
           </StyledLogoutWrapper>
       </StyledWrapper>
     </>
   );
 };
-const mapStateToProps = ({ username }) => {
-  return { username };
+const mapStateToProps = ({ username,userId }) => {
+  return { username,userId };
 };
 const mapDispatchToProps = (dispatch) =>({
-  logout: () => { dispatch(LogoutAction()); }
+  logout: (userId) => { dispatch(LogoutAction(userId)); }
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Navigation);

@@ -34,13 +34,15 @@ export const registerAction = (username, password) => (dispatch) => {
       dispatch({ type: 'AUTHENTICATE_FAILURE' });
     });
 };
-export const LogoutAction =()=> (dispatch) =>{
+
+
+export const LogoutAction =(Id)=> (dispatch) =>{
   dispatch({type: 'LOGOUT'});
   const url = 'User/Logout';
   axios
     .post(url,
       {
-
+        Id,
       }
 
     )

@@ -15,7 +15,7 @@ namespace FinApp.Services
             _User = database.GetCollection<User>(settings.UserCollectionName);
         }
         public List<User> Get() => _User.Find(user => true).ToList();
-        public User Get(string id) => _User.Find<User>(user => user.Id == id).FirstOrDefault();
+        public User Get(int id) => _User.Find<User>(user => user.Id == id).FirstOrDefault();
 
         public User Find(string username, string password) // do logowania
         {
@@ -29,7 +29,7 @@ namespace FinApp.Services
 
                 return user;
             }
-            return new User() { Id = "X", Username = "X", Password = "X" };
+            return new User() { Id = 0, Username = "X", Password = "X" };
         }
 
         public User Create(User user)
