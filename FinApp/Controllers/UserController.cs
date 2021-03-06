@@ -41,7 +41,7 @@ namespace FinApp.Controllers
         [HttpPost]
         public void Logout([FromBody] User user)
         { 
-            var obj = _finContext.Users.Single(u => u.Id == user.Id);
+            var obj = _finContext.Users.Single(u => u.Id.Equals(user.Id));
             obj.isLoggedIn = false;
             _finContext.Update(obj);
             _finContext.SaveChanges();
