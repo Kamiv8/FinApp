@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { routes } from '../theme/MainTheme';
 import AuthTemplate from '../templates/AuthTemplate';
 import LoginImage from '../components/LoginImage';
-import Form from '../components/Form';
+import FormAuthenticate from '../components/FormAuthenticate';
 import { ReactComponent as Logout } from '../assets/image/human_profile.svg';
 
 const StyledLogout = styled(Logout)`
@@ -21,12 +21,12 @@ const LoginPage = ({ location }) => {
         {locations === routes.loginPage ? (
           <>
             <LoginImage />
-            <Form />
+            <FormAuthenticate />
           </>
         ) : (
           <>
             <StyledLogout />
-            <Form registerForm />
+            <FormAuthenticate registerForm />
           </>
         )}
       </AuthTemplate>

@@ -13,6 +13,7 @@ const StyledWrapper = styled.div`
   width: 80%;
   height: 100vh;
   position: absolute;
+  z-index: 3;
   display: ${({open}) => open ? 'grid' : 'none'} ;
   top: 0;
   right: 0;

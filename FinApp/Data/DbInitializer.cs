@@ -1,8 +1,5 @@
 ﻿using FinApp.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace FinApp.Data
 {
@@ -22,9 +19,17 @@ namespace FinApp.Data
                 new User {Username = "Marek", Password="fds4243df"  },
                 new User {Username = "Tomasz", Password="432fd"  },
             };
-            foreach (User u in users )
+            foreach (User u in users)
             {
                 finContext.Add(u);
+            }
+            finContext.SaveChanges();
+            var operation = new Operation[] {
+                new Operation  { Title = "Za marzec", Data="21-03-2021", Description="tako", Price=123,UserId=users[0].Id },
+            };
+            foreach (Operation o in operation)
+            {
+                finContext.Add(o);
             }
             finContext.SaveChanges();
 

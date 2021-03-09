@@ -48,3 +48,33 @@ export const LogoutAction =(Id)=> (dispatch) =>{
     )
   return <Redirect to='/' />;
 }
+export const FetchDataMoneyAction = (userId) => dispatch =>{
+  const url = 'Operation/GetData';
+  console.log(`${userId} idddd`)
+  axios
+    .post(url,{Id: userId})
+    .then((payload) => {
+      dispatch({ type: 'GET_DATA_OPERATION', payload });
+    })
+    .catch(() => dispatch({ type: 'AUTHENTICATE_FAILURE' }));
+} 
+export const AddOperationAction = (title,price,date,description,userId) => dispatch =>{
+    
+
+
+    const url = 'Operation/Create';
+    axios
+      .post(url, {    
+        Title: title,
+        Price: +price,
+        Date: date,
+        Description: description,
+        UserId: userId
+      })
+      .then((payload) => {
+        dispatch( {type: 'ADD_OPERATION_MONEY',payload });
+      })
+      .catch(() => {
+        dispatch({ type: 'AUTHENTICATE_FAILURE' });
+      });
+}

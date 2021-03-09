@@ -1,9 +1,7 @@
 ﻿using FinApp.Data;
 using FinApp.Models;
-using FinApp.Services;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace FinApp.Controllers
 {
@@ -30,7 +28,7 @@ namespace FinApp.Controllers
                 obj.isLoggedIn = true;
                 _finContext.Update(obj);
                 _finContext.SaveChanges();
-                 return obj;
+                return obj;
             }
             else
             {
@@ -40,7 +38,7 @@ namespace FinApp.Controllers
         }
         [HttpPost]
         public void Logout([FromBody] User user)
-        { 
+        {
             var obj = _finContext.Users.Single(u => u.Id.Equals(user.Id));
             obj.isLoggedIn = false;
             _finContext.Update(obj);
@@ -50,48 +48,3 @@ namespace FinApp.Controllers
 
     }
 }
-
-
-
-//[HttpGet]
-//public ActionResult<List<User>> Get() =>
-//            _userService.Get();
-
-//[HttpGet("{id:length(24)}", Name = "GetUser")]
-//public ActionResult<User> Get(string id)
-//{
-//    var user = _userService.Get(id);
-
-//    if (user == null)
-//    {
-//        return NotFound();
-//    }
-
-//    return user;
-//}
-//[HttpPost]
-//public ActionResult<User> FindUser([FromBody] User users)
-//{
-//    var user = _userService.Find(users.Username, users.Password);
-//    if (user.Username == users.Username && user.Password == users.Password)
-//    {
-
-//        return user;
-
-//    }
-
-//    return NotFound();
-//}
-
-//[HttpPost]
-//public ActionResult<User> Create([FromBody] User user)
-//{
-
-//    _userService.Create(user);
-
-//    return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
-//}
-//public void Logout()
-//{
-
-//}

@@ -13,7 +13,7 @@ const StyledLine = styled.li`
   border-radius: 20px;
   background-color: white;
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   right: 0;
   ${({ second }) =>
     second &&

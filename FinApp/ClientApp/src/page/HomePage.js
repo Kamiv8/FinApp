@@ -1,11 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React,{useEffect, useState} from 'react';
+import { connect} from 'react-redux';
 import styled from 'styled-components';
 import Title from '../components/Title';
-
+import { FetchDataMoneyAction } from '../actions/actions';
 import HomeTemplate from '../templates/HomeTemplate';
 import SingleChart from '../components/SingleChart';
 import Button from '../components/Button';
+import FormOperation from '../components/FormOperation';
+import { theme } from '../theme/MainTheme';
+
 
 const StyledWrapper = styled.div`
   background-color: ${({theme}) => theme.white};
@@ -26,27 +29,48 @@ justify-content: center;
 margin: 20px 0;
 `;
 
-const HomePage = () => (
+const StyledTitleColor = styled(Title)`
+  color: ${({allMoney}) => allMoney >= 0 ? theme.green : theme.red};
+`;
+
+const HomePage = ({allMoney,userId,getData}) => {
+  const [add, setAdd] = useState(false);
+  let [money,setMoeny] = useState(allMoney);
+  useEffect(()=>{
+    setMoeny(allMoney);
+    money = getData(userId);
+
+  })
+  return(
   <>
     <HomeTemplate>
       <StyledWrapper>
         <Title>Your Budget:</Title>
-        <Title big>1999.00 PLN </Title>
+        <StyledTitleColor big allMoney={allMoney} >{money} PLN </StyledTitleColor>
         <Title>Money Status</Title>
         <StyledChart>
           <SingleChart />
         </StyledChart>
         <StyledButtonWrapper>
-          <Button reverse>Add operation</Button>
+          <Button reverse onClick={()=>{setAdd(!add)}} >Add operation</Button>
         </StyledButtonWrapper>
       </StyledWrapper>
-
     </HomeTemplate>
+    <FormOperation add={add} setAdd={setAdd}/>
   </>
-);
+  )
+}
 
-const mapStateToProps = ({ username = null }) => ({
+
+
+const mapStateToProps = ({ username = null,allMoney,userId}) => ({
   username,
+  allMoney,
+  userId
 });
-
-export default connect(mapStateToProps)(HomePage);
+const mapDispatchToProps = (dispatch) =>({
+  getData: (userId)=>{
+    dispatch(FetchDataMoneyAction(userId));
+  }
+}) 
+export default connect(mapStateToProps,mapDispatchToProps)(HomePage);
