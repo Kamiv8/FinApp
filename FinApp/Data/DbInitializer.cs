@@ -24,14 +24,14 @@ namespace FinApp.Data
                 finContext.Add(u);
             }
             finContext.SaveChanges();
-            var operation = new Operation[] {
-                new Operation  { Title = "Za marzec", Data="21-03-2021", Description="tako", Price=123,UserId=users[0].Id },
-            };
-            foreach (Operation o in operation)
-            {
-                finContext.Add(o);
-            }
-            finContext.SaveChanges();
+            //var operation = new Operation[] {
+            //    new Operation  { Title = "Za marzec", Date="12-12-1212", Description="tako", Price=123,UserId=users[0].Id,CurrentMoney=123 },
+            //};
+            //foreach (Operation o in operation)
+            //{
+            //    finContext.Add(o);
+            //}
+            //finContext.SaveChanges();
 
         }
     }

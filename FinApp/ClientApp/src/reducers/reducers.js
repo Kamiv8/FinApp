@@ -1,16 +1,19 @@
-
 const initialState = {
   isLoggedIn: false,
-  users: [
+
+  userId: '',
+  username: '',
+  password: '',
+  allMoney: 0,
+  operations: [
     {
-      userId: '',
-      username: '',
-      password: '',
-      allMoney: 0,
-        title: '',
-        price: 0,
-        date: '',
-        description: ''
+      operationId: 0,
+      userId: 0,
+      title: '',
+      price: 0,
+      date: '',
+      description: '',
+      currentMoney: 0,
     },
   ],
 };
@@ -24,32 +27,22 @@ const rootReducer = (state = initialState, action) => {
         userId: action.payload.data.id,
         username: action.payload.data.username,
         allMoney: action.payload.data.allMoney,
+        operations: [Array(...action.payload.data.operation)],
       };
     case 'LOGOUT':
       return {
-        ...state,
-        isLoggedIn: false,
-        users: null,
+        users: {},
       };
     case 'ADD_OPERATION_MONEY':
-      console.log(`${action.payload.data.allMoney}     [from reducers]`);
       return {
         ...state,
-        allMoney: action.payload.allMoney,
-        
+        allMoney: action.payload.data.allMoney,
+        operations: [Array(...action.payload.data.operation)],
       };
-      case 'GET_DATA_OPERATION':
-      console.log(`${action.payload.data.allMoney}     [from reducers]`);
-
-        return {
-          ...state,
-          allMoney: action.payload.data.allMoney,
-        };
 
     default:
       return state;
   }
-
 };
 
 export default rootReducer;

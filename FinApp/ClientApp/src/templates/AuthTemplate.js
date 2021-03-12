@@ -12,8 +12,10 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  background-color: ${({theme}) => theme.purple};
+  background-color: ${({ theme }) => theme.purple};
 `;
+
+// styled grid wrapper and make responsible form
 
 const StyledContent = styled.div`
   width: 100%;

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { LogoutAction } from '../actions/actions';
 
 import image from '../assets/image/3135715.png';
-import {ReactComponent as LogoutImage} from '../assets/image/logout2.svg';
+import { ReactComponent as LogoutImage } from '../assets/image/logout2.svg';
 
 import Nav from './Nav';
 
@@ -14,7 +14,7 @@ const StyledWrapper = styled.div`
   height: 100vh;
   position: absolute;
   z-index: 3;
-  display: ${({open}) => open ? 'grid' : 'none'} ;
+  display: ${({ open }) => (open ? 'grid' : 'none')};
   top: 0;
   right: 0;
   padding: 6% 6%;
@@ -28,9 +28,10 @@ const StyledUserPanel = styled.div`
   flex-direction: row;
   align-items: top;
   position: relative;
+  margin-right: 35px;
 `;
 const StyledProfileIcon = styled.div`
-  width:  37px;
+  width: 37px;
   height: 37px;
   border: 1px solid ${({ theme }) => theme.gray};
   border-radius: 50%;
@@ -47,18 +48,15 @@ const StyledUserName = styled(Link)`
 const StyledBookmarksPanel = styled.nav`
   position: relative;
   top: 15%;
-
 `;
-const StyledLogout = styled(Link)`
-
-`;
+const StyledLogout = styled(Link)``;
 const StyledLogoutWrapper = styled.div`
   position: relative;
   display: grid;
   align-items: end;
   justify-content: end;
 `;
-const Navigation = ({ username,logout,open ,userId}) => {
+const Navigation = ({ username, logout, open, userId }) => {
   return (
     <>
       <StyledWrapper open={open}>
@@ -69,19 +67,21 @@ const Navigation = ({ username,logout,open ,userId}) => {
         <StyledBookmarksPanel>
           <Nav />
         </StyledBookmarksPanel>
-          <StyledLogoutWrapper>
-          <StyledLogout to='/' onClick={()=>logout(userId)}>
+        <StyledLogoutWrapper>
+          <StyledLogout to="/" onClick={() => logout(userId)}>
             <LogoutImage />
           </StyledLogout>
-          </StyledLogoutWrapper>
+        </StyledLogoutWrapper>
       </StyledWrapper>
     </>
   );
 };
-const mapStateToProps = ({ username,userId }) => {
-  return { username,userId };
+const mapStateToProps = ({ username, userId }) => {
+  return { username, userId };
 };
-const mapDispatchToProps = (dispatch) =>({
-  logout: (userId) => { dispatch(LogoutAction(userId)); }
-})
-export default connect(mapStateToProps,mapDispatchToProps)(Navigation);
+const mapDispatchToProps = (dispatch) => ({
+  logout: (userId) => {
+    dispatch(LogoutAction(userId));
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

@@ -16,9 +16,8 @@ export const authenticateAction = (username, password) => (dispatch) => {
     .catch((err) => {
       dispatch({ type: 'AUTHENTICATE_FAILURE', err });
     });
-
-
 };
+
 export const registerAction = (username, password) => (dispatch) => {
   dispatch({ type: 'AUTHENTICATE_REQUEST' });
   const url = 'User/Create';
@@ -35,46 +34,32 @@ export const registerAction = (username, password) => (dispatch) => {
     });
 };
 
-
-export const LogoutAction =(Id)=> (dispatch) =>{
-  dispatch({type: 'LOGOUT'});
+export const LogoutAction = (Id) => (dispatch) => {
+  dispatch({ type: 'LOGOUT' });
   const url = 'User/Logout';
-  axios
-    .post(url,
-      {
-        Id,
-      }
 
-    )
-  return <Redirect to='/' />;
-}
-export const FetchDataMoneyAction = (userId) => dispatch =>{
-  const url = 'Operation/GetData';
-  console.log(`${userId} idddd`)
+  // eslint-disable-next-line no-undef
+  localStorage.clear();
+  axios.post(url, {
+    Id,
+  });
+  return <Redirect to="/" />;
+};
+
+export const AddOperationAction = (title, price, date, description, userId) => (dispatch) => {
+  const url = 'Operation/Create';
   axios
-    .post(url,{Id: userId})
-    .then((payload) => {
-      dispatch({ type: 'GET_DATA_OPERATION', payload });
+    .post(url, {
+      Title: title,
+      Price: +price,
+      Date: date,
+      Description: description,
+      UserId: userId,
     })
-    .catch(() => dispatch({ type: 'AUTHENTICATE_FAILURE' }));
-} 
-export const AddOperationAction = (title,price,date,description,userId) => dispatch =>{
-    
-
-
-    const url = 'Operation/Create';
-    axios
-      .post(url, {    
-        Title: title,
-        Price: +price,
-        Date: date,
-        Description: description,
-        UserId: userId
-      })
-      .then((payload) => {
-        dispatch( {type: 'ADD_OPERATION_MONEY',payload });
-      })
-      .catch(() => {
-        dispatch({ type: 'AUTHENTICATE_FAILURE' });
-      });
-}
+    .then((payload) => {
+      dispatch({ type: 'ADD_OPERATION_MONEY', payload });
+    })
+    .catch(() => {
+      dispatch({ type: 'AUTHENTICATE_FAILURE' });
+    });
+};

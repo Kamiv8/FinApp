@@ -1,48 +1,67 @@
-import React, { Component } from 'react';
-import { Line,Bar } from 'react-chartjs-2';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Line } from 'react-chartjs-2';
 import { theme } from '../theme/MainTheme';
 
+const SingleChart = ({ operations, allMoney }) => {
+  // console.log(operations[0].map(x => x.price));
+  // console.log(operations[0].map((x) => x.title));
+  // console.log(operations[0].map((x) => x.currentMoney));
 
+  const values = operations[0].map((x) => x.currentMoney);
+  const labels = operations[0].map((x) => x.date);
 
-class SingleChart extends Component {
-  state = {
+  const color = () => {
+    if (allMoney > 0) {
+      return theme.green;
+    } else if (allMoney === 0) {
+      return theme.orange;
+    } else {
+      return theme.red;
+    }
+  };
+
+  const optionsChart = {
     chartData: {
-      labels: [new Date().getDate(), 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels,
+
       datasets: [
         {
-          data: [200, 250, 500, 1100, -900, 300],
-          backgroundColor: [
-            theme.green
-
-          ],
-          borderColor: [
-            theme.white,
-
-          ],
+          data: values,
+          backgroundColor: color(),
+          borderColor: [theme.white],
           borderWidth: 2,
         },
       ],
-    options: {
+      options: {
         legend: {
-            display: false,
+          display: false,
         },
+        simpeSize: 10,
         maintainAspectRatio: false,
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
             },
-          },
-        ],
+          ],
+        },
       },
     },
-  }
-    }
+  };
 
-  render() {
-    return <Line data={this.state.chartData} options={this.state.chartData.options} />;
-  }
-}
+  return (
+    <>
+      <Line data={optionsChart.chartData} options={optionsChart.chartData.options} />
+    </>
+  );
+};
 
-export default SingleChart;
+const mapStateToProps = ({ operations, allMoney }) => ({
+  operations,
+  allMoney,
+});
+
+export default connect(mapStateToProps)(SingleChart);

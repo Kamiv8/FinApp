@@ -2,15 +2,16 @@ export const theme = {
   // color
   white: 'rgba(255,255,255,1)',
   purple: 'rgba(141,129,219,1)',
- // purple: 'rgba(11,19,219,1)', fake color to understoond how to change items in app
+  // purple: 'rgba(11,19,219,1)', fake color to understoond how to change items in app
 
-  green: 'rgba(101,222,72,0.7)',
+  green: 'rgba(87,225,45,0.7)',
   red: 'rgba(241,59,59,0.7)',
   gray: 'rgba(244,244,244,1)',
   grayDark: 'rgba(70,70,70,1)',
   grayLight: 'rgba(244,244,244,0.46)',
+  orange: 'rgba(255,170,0,0.46)',
   light: 300,
-  bold: 700,
+  bold: 900,
   // fonts
   fontSize: {
     xxxs: '0.8rem',
@@ -33,4 +34,8 @@ export const routes = {
   loginPage: '/',
   homePage: '/home',
   registerPage: '/register',
+  historyPage: '/history',
+  groupPage: '/group',
+  settingsPage: '/settings',
+
 };

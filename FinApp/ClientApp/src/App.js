@@ -7,6 +7,7 @@ import HomePage from './page/HomePage';
 import MainTemplate from './templates/MainTemplate';
 import { routes } from './theme/MainTheme';
 import store from './store/store';
+import HistoryPage from './page/HistoryPage';
 
 const App = () => {
   return (
@@ -16,8 +17,8 @@ const App = () => {
           <MainTemplate>
             <Switch>
               <Route exact path={routes.loginPage} component={LoginPage} />
-              <Route exact path={routes.homePage} component={HomePage} />
-              <Route exact path="/history" component={HomePage} />
+              <Route exact path={routes.homePage} render={() => <HomePage />} />
+              <Route exact path="/history" render={() => <HistoryPage />} />
               <Route exact path={routes.registerPage} component={LoginPage} />
             </Switch>
           </MainTemplate>

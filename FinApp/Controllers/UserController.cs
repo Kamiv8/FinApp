@@ -20,15 +20,17 @@ namespace FinApp.Controllers
             _finContext.SaveChanges();
             return user;
         }
-        public ActionResult<User> FindUser([FromBody] User user)
+        public ActionResult<object> FindUser([FromBody] User user)
         {
-            User obj = _finContext.Users.Single(u => u.Username.Equals(user.Username) && u.Password.Equals(user.Password));
-            if (obj.isLoggedIn == false)
+            User us = _finContext.Users.Single(u => u.Username.Equals(user.Username) && u.Password.Equals(user.Password));
+            var v = _finContext.Operations.Where(u => u.UserId == us.Id).ToArray();
+            if (us.isLoggedIn == false)
             {
-                obj.isLoggedIn = true;
-                _finContext.Update(obj);
+                us.isLoggedIn = true;
+                us.Operation = v;
+                _finContext.Update(us);
                 _finContext.SaveChanges();
-                return obj;
+                return us;
             }
             else
             {
@@ -39,7 +41,7 @@ namespace FinApp.Controllers
         [HttpPost]
         public void Logout([FromBody] User user)
         {
-            var obj = _finContext.Users.Single(u => u.Id.Equals(user.Id));
+            User obj = _finContext.Users.Single(u => u.Id.Equals(user.Id));
             obj.isLoggedIn = false;
             _finContext.Update(obj);
             _finContext.SaveChanges();

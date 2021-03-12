@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 const StyledWrapper = styled.ul`
   position: relative;
-//  bottom: 15px;
+  //  bottom: 15px;
 `;
 
 const StyledLine = styled.li`
@@ -13,34 +13,44 @@ const StyledLine = styled.li`
   border-radius: 20px;
   background-color: white;
   position: absolute;
+  transform-origin: left top;
   z-index: 4;
   right: 0;
-  ${({ second }) =>
-    second &&
+  &:nth-child(2) {
+    width: 20px;
+    top: 10px;
+  }
+  &:last-child {
+    width: 30px;
+    top: 20px;
+  }
+  ${({ exit }) =>
+    exit &&
     css`
-      width: 20px;
-      top: 10px;
-    `}
-  ${({ third }) =>
-    third &&
-    css`
-      width: 30px;
-      top: 20px;
+      &:first-child {
+        transform: rotate(-45deg) translateY(-4px);
+        transform-origin: right top;
+      }
+      &:nth-child(2) {
+        display: none;
+      }
+      &:last-child {
+        width: 35px;
+        transform-origin: right bottom;
+        transform: rotate(45deg);
+      }
     `}
 `;
 
 // onClick={() => setOpen(!open)
 
-
-const HamburgerIcon = (open,setOpen) => {
-
+const HamburgerIcon = ({ open }) => {
   return (
-
-      <StyledWrapper >  
-        <StyledLine first />
-        <StyledLine second />
-        <StyledLine third />
-      </StyledWrapper>
+    <StyledWrapper>
+      <StyledLine exit={open} />
+      <StyledLine exit={open} />
+      <StyledLine exit={open} />
+    </StyledWrapper>
   );
 };
 
