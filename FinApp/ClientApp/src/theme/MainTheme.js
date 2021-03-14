@@ -37,5 +37,4 @@ export const routes = {
   historyPage: '/history',
   groupPage: '/group',
   settingsPage: '/settings',
-
 };
