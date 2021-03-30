@@ -11,7 +11,9 @@ namespace FinApp.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public decimal AllMoney { get; set; }
-
+        // public byte[] Image { get; set; }
+        public ICollection<Image> Image { get; set; } = new List<Image>();
         public ICollection<Operation> Operation { get; set; } = new List<Operation>();
+
     }
 }

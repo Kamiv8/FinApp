@@ -3,13 +3,6 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '../reducers/reducers';
 
-// const store = createStore(
-//   rootReducer,
-
-//   composeWidthDevTools(applyMiddleware(thunk)),
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-// );
-
 const saveToLocalStorage = (state) => {
   try {
     const serializedState = JSON.stringify(state);

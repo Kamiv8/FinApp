@@ -63,3 +63,53 @@ export const AddOperationAction = (title, price, date, description, userId) => (
       dispatch({ type: 'AUTHENTICATE_FAILURE' });
     });
 };
+// do poprawy
+export const SortByCategoryAction = (category, userId) => (dispatch) => {
+  const url = 'Operation/SortByCategory';
+  console.log(category);
+  axios.post(url, { Title: category, UserId: userId });
+};
+
+export const ChangeNameAction = (userId, newName) => (dispatch) => {
+  const url = 'User/ChangeUsername';
+  axios
+    .put(url, {
+      id: userId,
+      username: newName,
+    })
+    .then((payload) => dispatch({ type: 'CHANGE_USERNAME', payload }))
+    .catch(() => {
+      dispatch({ type: 'AUTHENTICATE_FAILURE' });
+    });
+};
+export const ChangePasswordAction = (userId, newPassword) => (dispatch) => {
+  const url = 'User/ChangePassword';
+  axios.put(url, {
+    id: userId,
+    password: newPassword,
+  });
+};
+
+export const RemoveDataAction = (userId) => (dispatch) => {
+  const url = 'User/RemoveData';
+  axios
+    .put(url, {
+      id: userId,
+    })
+    .then((payload) => dispatch({ type: 'REMOVE_DATA', payload }));
+};
+
+export const AddDataAction = (file, userId) => (dispatch) => {
+  const url = 'User/AddImage';
+
+  const form = new FormData();
+  form.append('file', file);
+  form.append('json_data', userId);
+
+  axios.post(url, form).then((payload) =>
+    dispatch({
+      type: 'FETCH_IMAGE',
+      payload,
+    }),
+  );
+};
