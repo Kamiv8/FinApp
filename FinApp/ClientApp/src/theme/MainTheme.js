@@ -39,3 +39,5 @@ export const routes = {
   groupPage: '/group',
   settingsPage: '/settings',
 };
+
+export const px2vw = (size, width = 375) => `${(size / width) * 100}vw`;
