@@ -17,6 +17,10 @@ const StyledForm = styled(Forms)`
   flex-direction: column;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.16);
   padding: 5%;
+  @media screen and (min-width: 960px) {
+    margin: 0;
+    height: 100%;
+  }
 `;
 
 const StyledDescription = styled.textarea`
@@ -27,6 +31,9 @@ const StyledDescription = styled.textarea`
   &::-webkit-input-placeholder {
     font-size: ${({ theme }) => theme.fontSize.xxs};
   }
+  @media screen and (min-width: 960px) {
+    width: 70%;
+  }
 `;
 
 const FormOperation = ({ userId, addOperation, setAdd }) => {
@@ -35,8 +42,8 @@ const FormOperation = ({ userId, addOperation, setAdd }) => {
       initialValues={{ title: '', price: '', date: '', description: '' }}
       onSubmit={({ title, date, price, description }, { resetForm }) => {
         addOperation(title, price, date, description, userId);
-        setAdd(false);
         resetForm();
+        setAdd(false);
       }}
     >
       {({ handleChange, values, handleBlur }) => {
@@ -51,6 +58,7 @@ const FormOperation = ({ userId, addOperation, setAdd }) => {
               onChange={handleChange}
               onBlur={handleBlur}
               autoComplete="off"
+              required
             />
             <Input
               second
@@ -61,6 +69,7 @@ const FormOperation = ({ userId, addOperation, setAdd }) => {
               onBlur={handleBlur}
               onChange={handleChange}
               autoComplete="off"
+              required
             />
             <Input
               second
@@ -71,6 +80,7 @@ const FormOperation = ({ userId, addOperation, setAdd }) => {
               onBlur={handleBlur}
               value={values.date}
               autoComplete="off"
+              required
             />
             <StyledDescription
               placeholder="Description"

@@ -8,7 +8,7 @@ const Button = styled.button`
   font-size: ${({ theme }) => theme.fontSize.xxs};
   text-transform: uppercase;
   padding: 8px 50px;
-  border: none;
+  // border: none;
   border: ${({ theme, reverse }) => (reverse ? `1px solid ${theme.purple}` : 'none')};
   &:focus {
     outline: none;
@@ -17,6 +17,10 @@ const Button = styled.button`
     font-size: ${({ theme }) => theme.fontSize.s};
     width: 220px;
     height: 40px;
+    &:hover {
+      background-color: ${({ theme }) => theme.purple};
+      color: ${({ theme }) => theme.white};
+    }
     //  display: ${({ reverse }) => (reverse ? 'none' : 'block')};
   }
   ${({ settings }) =>

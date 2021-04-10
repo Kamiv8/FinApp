@@ -1,15 +1,20 @@
 import React from 'react';
-import {  Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
+import * as Yup from 'yup';
 
 import { routes } from '../../../theme/MainTheme';
 import Input from '../../Atoms/Input/Input';
 import Button from '../../Atoms/Button/Button';
 import { authenticateAction, registerAction } from '../../../actions/actions';
-import {StyledWrapper,StyledForm,StyledLink,StyledTitle}from './StyledFormAuthenticate';
+import { StyledWrapper, StyledForm, StyledLink, StyledTitle } from './StyledFormAuthenticate';
 
-
+const RegisterSchema = Yup.object().shape({
+  username: Yup.string().min(3, 'Too short').max(30, 'Too long').required(),
+  password: Yup.string().min(8, 'Min 8 marks').max(20, 'Max 20 marks'),
+  secondpassword: Yup.string().min(8, 'Min 8 marks').max(20, 'Max 20 marks'),
+});
 
 const FormAuthenticate = ({ registerForm, authenticate, register, isLoggedIn }) => {
   return (
@@ -20,6 +25,7 @@ const FormAuthenticate = ({ registerForm, authenticate, register, isLoggedIn }) 
             <StyledTitle>Create Account</StyledTitle>
             <Formik
               initialValues={{ username: '', password: '', secondPassword: '' }}
+              validationSchema={RegisterSchema}
               onSubmit={({ username, password, secondPassword }, { resetForm }) => {
                 if (password === secondPassword) {
                   register(username, password);
@@ -27,13 +33,14 @@ const FormAuthenticate = ({ registerForm, authenticate, register, isLoggedIn }) 
                 }
               }}
             >
-              {({ handleChange, values, handleBlur }) => {
+              {({ handleChange, values, handleBlur, errors, touched }) => {
                 if (isLoggedIn) {
                   return <Redirect to="/home" />;
                 }
                 return (
                   <>
                     <StyledForm>
+                      {errors.username && touched.username ? <div>{errors.username}</div> : null}
                       <Input
                         type="text"
                         name="username"
@@ -42,7 +49,10 @@ const FormAuthenticate = ({ registerForm, authenticate, register, isLoggedIn }) 
                         onBlur={handleBlur}
                         placeholder="LOGIN"
                         autoComplete="off"
+                        required
                       />
+                      {errors.password && touched.password ? <div>{errors.password}</div> : null}
+
                       <Input
                         type="password"
                         name="password"
@@ -50,7 +60,10 @@ const FormAuthenticate = ({ registerForm, authenticate, register, isLoggedIn }) 
                         value={values.password}
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        required
                       />
+                      {errors.password && touched.password ? <div>{errors.password}</div> : null}
+
                       <Input
                         type="password"
                         name="secondPassword"
@@ -58,6 +71,7 @@ const FormAuthenticate = ({ registerForm, authenticate, register, isLoggedIn }) 
                         value={values.secondPassword}
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        required
                       />
                       <Button type="submit">REGISTER</Button>
                     </StyledForm>

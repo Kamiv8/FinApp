@@ -20,6 +20,17 @@ const initialState = {
       currentMoney: 0,
     },
   ],
+  sortedOperation: [
+    {
+      operationId: 0,
+      userId: 0,
+      title: '',
+      price: 0,
+      date: '',
+      description: '',
+      currentMoney: 0,
+    },
+  ],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -65,6 +76,12 @@ const rootReducer = (state = initialState, action) => {
           data: action.payload.headers,
         },
       };
+    case 'SORT_DATA': {
+      return {
+        ...state,
+        sortedOperation: action.payload.data,
+      };
+    }
     // case 'CHANGE_COLOR':
     //   return {
     //     ...state,

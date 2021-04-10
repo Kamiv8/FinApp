@@ -63,8 +63,25 @@ namespace FinApp.Controllers
             User user = _finContext.Users.Single(x => x.Id == operation.UserId);
 
             var data = _finContext.Operations.Where(x => x.UserId == user.Id).ToList();
+            Operation[] sorted;
+            if (operation.Title == "date")
+            {
 
-            return data;
+                sorted = data.OrderByDescending(o => o.OperationId).ToArray();
+            }
+            else if (operation.Title == "name")
+            {
+                sorted = data.OrderBy(o => o.Title).ToArray();
+
+            }
+            else
+            {
+                sorted = data.OrderByDescending(o => o.Price).ToArray();
+
+            }
+
+
+            return sorted;
 
         }
     }

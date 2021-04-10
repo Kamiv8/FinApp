@@ -66,8 +66,9 @@ export const AddOperationAction = (title, price, date, description, userId) => (
 // do poprawy
 export const SortByCategoryAction = (category, userId) => (dispatch) => {
   const url = 'Operation/SortByCategory';
-  console.log(category);
-  axios.post(url, { Title: category, UserId: userId });
+  axios.post(url, { Title: category, UserId: userId }).then((payload) => {
+    dispatch({ type: 'SORT_DATA', payload });
+  });
 };
 
 export const ChangeNameAction = (userId, newName) => (dispatch) => {
@@ -82,7 +83,7 @@ export const ChangeNameAction = (userId, newName) => (dispatch) => {
       dispatch({ type: 'AUTHENTICATE_FAILURE' });
     });
 };
-export const ChangePasswordAction = (userId, newPassword) => (dispatch) => {
+export const ChangePasswordAction = (userId, newPassword) => () => {
   const url = 'User/ChangePassword';
   axios.put(url, {
     id: userId,
@@ -102,6 +103,7 @@ export const RemoveDataAction = (userId) => (dispatch) => {
 export const AddDataAction = (file, userId) => (dispatch) => {
   const url = 'User/AddImage';
 
+  // eslint-disable-next-line no-undef
   const form = new FormData();
   form.append('file', file);
   form.append('json_data', userId);

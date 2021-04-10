@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { SortByCategoryAction } from '../../actions/actions';
@@ -6,6 +6,7 @@ import { SortByCategoryAction } from '../../actions/actions';
 import Title from '../Atoms/Title/Title';
 import HistoryCard from '../Organisms/HistoryCard/HistoryCard';
 import HomeTemplate from '../templates/HomeTemplate';
+// import SingleChart from '../Atoms/SingleChart/SingleChart';
 
 const StyledTitleWrapper = styled.div`
   display: flex;
@@ -42,9 +43,15 @@ const StyledContent = styled.div`
   height: 100%;
   grid-template-columns: 1fr;
   grid-template-rows: 10% 10% 10% auto;
+  @media screen and (min-width: 960px) {
+    width: 50%;
+  }
 `;
 
-const HistoryPage = ({ allMoney, operations, sortByName, userId }) => {
+const HistoryPage = ({ allMoney, sortedOperation, sortByName, userId }) => {
+  useEffect(() => {
+    sortByName('date', userId);
+  }, []);
   return (
     <>
       <HomeTemplate>
@@ -59,9 +66,8 @@ const HistoryPage = ({ allMoney, operations, sortByName, userId }) => {
               <option value="money">By money</option>
             </StyledSelect>
           </StyledTitleWrapper>
-
           <StyledCardWrapper>
-            {operations.map(({ title, price, date, description, operationId }) => (
+            {sortedOperation.map(({ title, price, date, description, operationId }) => (
               <HistoryCard
                 key={operationId}
                 title={title}
@@ -77,9 +83,9 @@ const HistoryPage = ({ allMoney, operations, sortByName, userId }) => {
   );
 };
 
-const mapStateToProps = ({ allMoney, operations, userId }) => ({
+const mapStateToProps = ({ allMoney, sortedOperation, userId }) => ({
   allMoney,
-  operations,
+  sortedOperation,
   userId,
 });
 

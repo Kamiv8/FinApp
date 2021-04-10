@@ -53,7 +53,7 @@ const StyledMainContent = styled.div`
     height: 95vh;
     margin: 2.5vh;
     // margin-right: 20px;
-    padding: 4%;
+    padding: 4% 2% 4% 4%;
     border-radius: 90px;
   }
 `;

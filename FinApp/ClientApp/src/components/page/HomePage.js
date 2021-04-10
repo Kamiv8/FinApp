@@ -42,7 +42,7 @@ const StyledContent = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   @media (min-width: 960px) {
-    grid-template-columns: 7fr 3fr;
+    grid-template-columns: 6fr 4fr;
     // grid-template-rows: auto;
     gap: 3%;
   }
