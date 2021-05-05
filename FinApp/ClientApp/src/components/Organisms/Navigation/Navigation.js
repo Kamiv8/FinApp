@@ -1,13 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { LogoutAction } from '../../../actions/actions';
 
 import { ReactComponent as LogoutImage } from '../../../assets/image/logout2.svg';
 import UserPanel from '../../Atoms/UserPanel/UserPanel';
 
 import Nav from '../../Molecues/Nav/Nav';
+
+const Open = keyframes`
+  from{
+    transform: translateX(100%);
+  }
+  to{
+    transform: translateX(0);
+  }
+`;
+
+const Animation = () => css`
+  animation: ${Open} 0.3s ease-out forwards;
+`;
 
 const StyledWrapper = styled.div`
   width: 80%;
@@ -20,8 +33,7 @@ const StyledWrapper = styled.div`
   padding: 6% 6%;
   background-color: ${({ theme }) => theme.purple};
   box-shadow: -10px 3px 20px rgba(0, 0, 0, 0.16);
-  transition: transform 0.3s ease-in-out;
-  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
+  ${({ open }) => (open ? Animation : ' transform: translateX(100%)')};
   @media screen and (min-width: 960px) {
     display: none;
   }

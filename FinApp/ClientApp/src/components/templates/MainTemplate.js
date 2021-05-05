@@ -10,9 +10,7 @@ const StyledWrapper = styled.div`
 `;
 
 const MainTemplate = ({ children }) => {
-  // const [selectedTheme, setSelectedTheme] = useState(theme);
-
-  // setSelectedTheme({ ...theme, purple: interfaceColor });
+  // const [selectedTheme, setSelectedTheme] = useState({ theme });
 
   return (
     <StyledWrapper>
@@ -21,5 +19,9 @@ const MainTemplate = ({ children }) => {
     </StyledWrapper>
   );
 };
+
+// const mapStateToProps = ({ mainColor }) => ({
+//   mainColor,
+// });
 
 export default MainTemplate;

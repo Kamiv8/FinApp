@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Title from '../Atoms/Title/Title';
@@ -95,10 +95,11 @@ const HomePage = ({ allMoney }) => {
   );
 };
 
-const mapStateToProps = ({ username = null, allMoney, userId }) => ({
+const mapStateToProps = ({ username = null, allMoney, userId, mainColor }) => ({
   username,
   allMoney,
   userId,
+  mainColor,
 });
 
 export default connect(mapStateToProps)(HomePage);

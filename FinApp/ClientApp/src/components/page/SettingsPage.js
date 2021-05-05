@@ -9,12 +9,15 @@ import Button from '../Atoms/Button/Button';
 import Label from '../Atoms/Label/Label';
 import ModalSettings from '../Organisms/ModalSettings/ModalSettings';
 import SettingsIcon from '../Atoms/SettingsIcon/SettingsIcon';
-import { AddDataAction } from '../../actions/actions';
+import { AddDataAction, ChangeMainColorAction } from '../../actions/actions';
 
 const StyledWrapper = styled.div`
   width: 100%;
   display: grid;
   gap: 40px;
+  @media screen and (min-width: 960px) {
+    width: 50%;
+  }
 `;
 
 const StyledImage = styled.img`
@@ -40,13 +43,13 @@ const StyledInputContent = styled.div`
   justify-content: flex-end;
 `;
 
-const SettingsPage = ({ username, addData, userId, profileImage }) => {
+const SettingsPage = ({ username, addData, userId, profileImage, changeColor, mainColor }) => {
   const [{ open, data }, setOpenModal] = useState({
     open: false,
     data: '',
   });
 
-  const [file, setFile] = useState(null);
+  // const [file, setFile] = useState(null);
 
   return (
     <>
@@ -56,10 +59,6 @@ const SettingsPage = ({ username, addData, userId, profileImage }) => {
           <Title>Settings</Title>
           <StyledIconWrapper>
             <StyledImage src={profileIcon} alt="profileImage" />
-            <input type="file" onChange={(x) => setFile(x.currentTarget.files[0])} />
-            <button type="button" onClick={() => addData(file, userId)}>
-              dddd
-            </button>
           </StyledIconWrapper>
           <StyledForm>
             <Label>Username</Label>
@@ -67,14 +66,13 @@ const SettingsPage = ({ username, addData, userId, profileImage }) => {
               <Input third type="text" value={username} disabled />
               <SettingsIcon open={open} setOpenModal={setOpenModal} data="username" />
             </StyledInputContent>
-
             <Label>Password</Label>
             <StyledInputContent>
               <Input third type="text" value="......................." disabled />
               <SettingsIcon open={open} setOpenModal={setOpenModal} data="password" />
             </StyledInputContent>
             <Label>Interface color</Label>
-            <input type="color" />
+            <input type="color" onChange={(e) => changeColor(e.target.value, userId)} />
             <Label>Reset all data</Label>
             <Button type="button" onClick={() => setOpenModal({ open: !open, data: 'data' })}>
               Reset
@@ -86,15 +84,24 @@ const SettingsPage = ({ username, addData, userId, profileImage }) => {
   );
 };
 
-const mapStateToProps = ({ username, userId, profileImage }) => ({
+const mapStateToProps = ({ username, userId, profileImage, mainColor }) => ({
   username,
   userId,
   profileImage,
+  mainColor,
 });
 const mapDispatchToProps = (dispatch) => ({
   addData: (file, userId) => {
     dispatch(AddDataAction(file, userId));
   },
+  changeColor: (color, userId) => {
+    dispatch(ChangeMainColorAction(color, userId));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);
+
+// <input type="file" onChange={(x) => setFile(x.currentTarget.files[0])} />
+//             <button type="button" onClick={() => addData(file, userId)}>
+//               dddd
+//               </button>

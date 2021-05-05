@@ -48,10 +48,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsData);
-
-/* &::before {
-    display: block;
-    content: '';
-    background-image: url(${changeIcon});
-
-  } */

@@ -1,8 +1,8 @@
 export const theme = {
-  // color
+  // colors
   white: 'rgba(255,255,255,1)',
-  purple: 'rgba(141,129,219,1)',
-
+  // purple: 'rgba(141,129,219,1)',
+  purple: 'rgba(108,99,255,1)',
   green: 'rgba(87,225,45,0.7)',
   red: 'rgba(241,59,59,0.7)',
   gray: 'rgba(244,244,244,1)',

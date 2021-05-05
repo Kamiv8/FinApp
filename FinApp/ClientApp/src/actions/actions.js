@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { theme } from '../theme/MainTheme';
 
 export const authenticateAction = (username, password) => (dispatch) => {
   dispatch({ type: 'AUTHENTICATE_REQUEST' });
@@ -114,4 +115,15 @@ export const AddDataAction = (file, userId) => (dispatch) => {
       payload,
     }),
   );
+};
+
+export const ChangeMainColorAction = (color, userId) => (dispatch) => {
+  const url = 'User/ChangeColor';
+  theme.purple = color;
+  axios
+    .put(url, {
+      id: userId,
+      mainColor: color,
+    })
+    .then((payload) => dispatch({ type: 'CHANGE_COLOR', payload }));
 };

@@ -136,8 +136,16 @@ namespace FinApp.Controllers
             User us = _finContext.Users.Single(x => x.Id.Equals(user.Id));
             us.AllMoney = 0;
             _finContext.SaveChanges();
+        }
+        [HttpPut]
+        public ActionResult<User> ChangeColor([FromBody] User user)
+        {
+            User us = _finContext.Users.Single(x => x.Id.Equals(user.Id));
+            us.MainColor = user.MainColor;
+            _finContext.SaveChanges();
 
 
+            return us;
 
         }
 

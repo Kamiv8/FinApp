@@ -19,6 +19,10 @@ const StyledWrapper = styled.div`
   height: 40%;
   background-color: ${({ theme }) => theme.white};
   border-radius: 20px;
+  @media screen and (min-width: 960px) {
+    width: 40%;
+    margin: auto;
+  }
 `;
 
 const ModalSettings = ({ open, setOpen, data }) => {

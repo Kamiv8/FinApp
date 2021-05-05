@@ -5,6 +5,7 @@ const initialState = {
   username: '',
   password: '',
   allMoney: 0,
+  mainColor: '',
   profileImage: {
     data: 0,
     contentType: '',
@@ -42,6 +43,7 @@ const rootReducer = (state = initialState, action) => {
         userId: action.payload.data.id,
         username: action.payload.data.username,
         allMoney: action.payload.data.allMoney,
+        mainColor: action.payload.data.mainColor,
         operations: Array(...action.payload.data.operation),
       };
     case 'LOGOUT':
@@ -80,6 +82,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         sortedOperation: action.payload.data,
+      };
+    }
+    case 'CHANGE_COLOR': {
+      console.log(action.payload);
+      return {
+        ...state,
+        mainColor: action.payload.data.mainColor,
       };
     }
     // case 'CHANGE_COLOR':
