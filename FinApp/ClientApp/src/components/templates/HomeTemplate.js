@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Logo from '../Atoms/LogoImage/LogoImage';
 import HamburgerIcon from '../Atoms/HamburgerImage/HamburgerImage';
